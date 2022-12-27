@@ -16,15 +16,25 @@ document.writeln(`Функція №1: ${getMaxDigit(123456)}<br>`)
 
 function getDegree(number, degree) {
     let result = number;
+    if (degree === 0) {
+        return 1;
+    } else if (degree > 0) {
+        for (let i = 1; i < degree; i++) {
+            result = result * number;
+        }
 
-    for (let i = 1; i < degree; i++) {
-        result = result * number;
+        return result;
+    } else if (degree < 0) {
+        for (let i = 1; i < Math.abs(degree); i++) {
+            result = result * number;
+        }
+
+        return (1/result).toFixed(2);
     }
 
-    return result;
 }
 
-document.writeln(`Функція №2: ${getDegree(2, 5)}<br>`)
+document.writeln(`Функція №2: ${getDegree(3, -2)}<br>`)
 
 //getUpperCase(string)
 
@@ -60,14 +70,14 @@ function countLetter(letter, word) {
 
     for (let i = 0; i < word.length; i++) {
 
-        if (word.charAt(i) == letter) {
+        if (word.toLowerCase().charAt(i) == letter.toLowerCase()) {
             counter += 1;
         }
     }
     return counter;
 }
 
-document.writeln(`Функція №6: ${countLetter('e', 'coffee')}<br>`)
+document.writeln(`Функція №6: ${countLetter('E', 'coffee')}<br>`)
 
 //convertCurrency("100$")
 
@@ -130,11 +140,7 @@ function isPalyndrom(text = '') {
     for (const letter in text) {
         reversedText = text[letter] + reversedText;
     }
-    if (reversedText === text) {
-        return true;
-    } else {
-        return false;
-    }
+    return (reversedText === text);
 }
 
 document.writeln(`Функція №12: ${isPalyndrom("Я несу гусеня")}<br>`)
